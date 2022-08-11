@@ -2,18 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+//requery tanimladik
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+//quey devtools importrt
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react'
 //chackaru burda sarmarladik
+const queryClient = new QueryClient()
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ChakraProvider>
+  
   <React.StrictMode>
+        <QueryClientProvider client={queryClient}>
+
+    <ChakraProvider>
     <App />
+
+    </ChakraProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+
+    </QueryClientProvider>
+
   </React.StrictMode>
-  </ChakraProvider>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
